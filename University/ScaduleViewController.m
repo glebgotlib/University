@@ -71,11 +71,11 @@
     institute_picker.delegate = self;
     fak_picker.delegate = self;
     group_picker.delegate = self;
-    _scrollV.contentSize = CGSizeMake(self.view.frame.size.width, 736);
+    _scrollV.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height-100);
     
-    institute_picker.backgroundColor = [UIColor lightGrayColor];
-    fak_picker.backgroundColor = [UIColor lightGrayColor];
-    group_picker.backgroundColor = [UIColor lightGrayColor];
+    institute_picker.backgroundColor = [UIColor whiteColor];
+    fak_picker.backgroundColor = [UIColor whiteColor];
+    group_picker.backgroundColor = [UIColor whiteColor];
     
     
     [self feedLine];
@@ -157,10 +157,8 @@
     if (pickerView == institute_picker) {
         [arr_fak removeAllObjects];
         selected_fak = [[jsonResultsArray objectAtIndex:row] objectForKey:@"fakulty"];
-//        title_label.text = [[jsonResultsArray objectAtIndex:row] objectForKey:@"fakulty"];
         if (![selected_fak isEqualToString:@""]) {
             for (NSDictionary*dict in jsonResultsArray) {
-//                [arr_fak removeAllObjects];
                 if ([[dict objectForKey:@"fakulty"] isEqualToString:selected_fak]) {
                     
                     for (NSDictionary* dic in [dict objectForKey:@"courses"]) {
@@ -173,8 +171,7 @@
         }
         [fak_picker reloadAllComponents];
         [self kurs_select:0];
-//        _GoIns.titleLabel.text = selected_fak;
-        [_GoIns setTitle:[NSString stringWithFormat:@"Факультет: %@ [сменить]",selected_fak] forState:UIControlStateNormal];
+        [_GoIns setTitle:[NSString stringWithFormat:@"%@",selected_fak] forState:UIControlStateNormal];
 
         [institute_picker setHidden:YES];
         
@@ -218,9 +215,8 @@
         name_str = [arr_group objectAtIndex:row];
         url_str = [arr_urls objectAtIndex:row];
         id_str = [arr_Id objectAtIndex:row];
-//        _gogogoggo.titleLabel.text = [arr_group objectAtIndex:row];
-         [_gogogoggo setTitle:[NSString stringWithFormat:@"Группа: %@ [сменить]",[arr_group objectAtIndex:row]] forState:UIControlStateNormal];
-        NSLog(@"%@", id_str);
+         [_gogogoggo setTitle:[NSString stringWithFormat:@"%@",[arr_group objectAtIndex:row]] forState:UIControlStateNormal];
+//        NSLog(@"%@", id_str);
         [group_picker setHidden:YES];
     }
 }
@@ -277,7 +273,7 @@
                                                               for (NSDictionary* dic in [dict objectForKey:@"courses"]) {
                                                                   [arr_fak addObject:[dic objectForKey:@"coursenum"]];
                                                               }
-                                                              NSLog(@"yes %@",arr_fak);
+//                                                              NSLog(@"yes %@",arr_fak);
                                                           }
                                                           
                                                       }
@@ -285,8 +281,7 @@
                                                       }
                                                   
                                                   [institute_picker reloadAllComponents];
-                                                  [_GoIns setTitle:[NSString stringWithFormat:@"Факультет: %@ [сменить]",selected_fak] forState:UIControlStateNormal];
-//                                                   _GoIns.titleLabel.text = [NSString stringWithFormat:@"Факультет: %@ [сменить]",selected_fak];
+                                                  [_GoIns setTitle:[NSString stringWithFormat:@"%@",selected_fak] forState:UIControlStateNormal];
                                                   
                                                   
                                                   
@@ -300,7 +295,6 @@
                                           if (error.code !=-999){
                                               UIAlertView* errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sorry", nil) message:NSLocalizedString(@"Bad connection", nil)  delegate: self cancelButtonTitle:@"ok" otherButtonTitles:nil];
                                               [errorAlert show];
-                                              //                                 [activityIndicator stopAnimating];
                                               [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                           }
                                       }
@@ -409,7 +403,6 @@
     if (arr_fak.count>=kuts) {
         selected_kurs = [arr_fak objectAtIndex:kuts];
     }
-    //        title_label.text = [arr_fak objectAtIndex:row];
     
     if (![selected_kurs isEqualToString:@""]) {
         for (NSDictionary*dict in jsonResultsArray) {
@@ -440,8 +433,7 @@
             
         }
     }
-    [_gogogoggo setTitle:[NSString stringWithFormat:@"Группа: %@ [сменить]",[arr_group objectAtIndex:0]] forState:UIControlStateNormal];
-//    _gogogoggo.titleLabel.text = [NSString stringWithFormat:@"Группа: %@ [сменить]",[arr_group objectAtIndex:0]];
+    [_gogogoggo setTitle:[NSString stringWithFormat:@"%@",[arr_group objectAtIndex:0]] forState:UIControlStateNormal];
     if (arr_group.count!=0) {
         [group_picker reloadAllComponents];
     }

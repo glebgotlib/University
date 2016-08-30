@@ -11,6 +11,8 @@
 		8C1FC3D21D5615A000F5EFE3 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C1FC3D01D5615A000F5EFE3 /* right.png */; };
 		8C1FC3D41D5DC56D00F5EFE3 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C1FC3D31D5DC56D00F5EFE3 /* circle.png */; };
 		8C1FC3D61D5DCF3400F5EFE3 /* circle1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C1FC3D51D5DCF3400F5EFE3 /* circle1.png */; };
+		8C1FC3D81D5DFCB800F5EFE3 /* 1471023993_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C1FC3D71D5DFCB800F5EFE3 /* 1471023993_down.png */; };
+		8C1FC3DA1D5DFD6400F5EFE3 /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C1FC3D91D5DFD6400F5EFE3 /* down.png */; };
 		8C29DD511D5382FC004EB057 /* ogasaback.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C29DD501D5382FC004EB057 /* ogasaback.png */; };
 		8C2BBF1A1D54CEDE00543ABB /* horline.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C2BBF191D54CEDE00543ABB /* horline.png */; };
 		8CF7D98C1D377E2E00641E41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF7D98B1D377E2E00641E41 /* main.m */; };
@@ -76,6 +78,8 @@
 		8C1FC3D01D5615A000F5EFE3 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right.png; sourceTree = "<group>"; };
 		8C1FC3D31D5DC56D00F5EFE3 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		8C1FC3D51D5DCF3400F5EFE3 /* circle1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle1.png; sourceTree = "<group>"; };
+		8C1FC3D71D5DFCB800F5EFE3 /* 1471023993_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1471023993_down.png; sourceTree = "<group>"; };
+		8C1FC3D91D5DFD6400F5EFE3 /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
 		8C29DD501D5382FC004EB057 /* ogasaback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ogasaback.png; sourceTree = "<group>"; };
 		8C2BBF191D54CEDE00543ABB /* horline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horline.png; sourceTree = "<group>"; };
 		8CF7D9871D377E2E00641E41 /* University.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = University.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -221,6 +225,8 @@
 		8CF7D9A41D37A24000641E41 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				8C1FC3D71D5DFCB800F5EFE3 /* 1471023993_down.png */,
+				8C1FC3D91D5DFD6400F5EFE3 /* down.png */,
 				8C1FC3D51D5DCF3400F5EFE3 /* circle1.png */,
 				8C1FC3D31D5DC56D00F5EFE3 /* circle.png */,
 				8CFC40371D4B8220009A06EE /* ogasa-top.png */,
@@ -444,10 +450,12 @@
 				8CFC40381D4B8220009A06EE /* ogasa-top.png in Resources */,
 				8CF7DA381D47689200641E41 /* ogasa-msg.png in Resources */,
 				8CF7DA231D410DF800641E41 /* 6g.png in Resources */,
+				8C1FC3D81D5DFCB800F5EFE3 /* 1471023993_down.png in Resources */,
 				8CFC40361D4B5980009A06EE /* grad.png in Resources */,
 				8CF7DA1C1D410DF800641E41 /* 3.png in Resources */,
 				8C1FC3D11D5615A000F5EFE3 /* left.png in Resources */,
 				8C1FC3D41D5DC56D00F5EFE3 /* circle.png in Resources */,
+				8C1FC3DA1D5DFD6400F5EFE3 /* down.png in Resources */,
 				8C29DD511D5382FC004EB057 /* ogasaback.png in Resources */,
 				8CF7D9951D377E2E00641E41 /* Main.storyboard in Resources */,
 				8CF7DA181D410DF800641E41 /* 1.png in Resources */,
@@ -595,7 +603,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = University/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ogasa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -610,7 +618,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = University/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ogasa;
 				PRODUCT_NAME = "$(TARGET_NAME)";

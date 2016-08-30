@@ -221,15 +221,15 @@
     }
     if ([[[_items objectAtIndex:index] objectForKey:@"title"] length]>=30) {
         label.frame = CGRectMake(30, 0, self.view.frame.size.width-60, 50);
-        label.numberOfLines = 2;
+        label.numberOfLines = 3;
     }
     if ([[[_items objectAtIndex:index] objectForKey:@"title"] length]>43) {
         label.frame = CGRectMake(30, 0, self.view.frame.size.width-60, 70);
-        label.numberOfLines = 3;
+        label.numberOfLines = 4;
     }
     if ([[[_items objectAtIndex:index] objectForKey:@"title"] length]>60) {
-        label.frame = CGRectMake(30, 0, self.view.frame.size.width-60, 100);
-        label.numberOfLines = 4;
+        label.frame = CGRectMake(30, 0, self.view.frame.size.width-60, 130);
+        label.numberOfLines = 5;
     }
     label.backgroundColor = [UIColor colorWithRed:0.0 green:0.2 blue:0.5 alpha:0.7];
     label.text = [[_items objectAtIndex:index] objectForKey:@"title"];
@@ -242,6 +242,11 @@
 - (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value
 {
     return value;
+}
+
+- (void)carouselDidEndScrollingAnimation:(iCarousel *)carousel{
+    NSLog(@"%ld",(long)_carousel_view.currentItemIndex);
+    [_web_view loadHTMLString:[[_items objectAtIndex:_carousel_view.currentItemIndex] objectForKey:@"fulltext"] baseURL:nil];
 }
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
@@ -326,4 +331,15 @@
 }
 
 
+- (IBAction)left_S:(UIButton *)sender {
+//    carouselDidScroll
+//    NSLog(@"%ld",(long)_carousel_view.currentItemIndex);
+    [_carousel_view scrollToItemAtIndex:_carousel_view.currentItemIndex-1 animated:YES];
+    
+}
+
+- (IBAction)right_S:(UIButton *)sender {
+//     NSLog(@"%ld",(long)_carousel_view.currentItemIndex);
+    [_carousel_view scrollToItemAtIndex:_carousel_view.currentItemIndex+1 animated:YES];
+}
 @end

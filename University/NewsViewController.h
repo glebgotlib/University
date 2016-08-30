@@ -19,4 +19,8 @@
 
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (weak, nonatomic) IBOutlet iCarousel *carousel_view;
+@property (weak, nonatomic) IBOutlet UIButton *right_scroll;
+@property (weak, nonatomic) IBOutlet UIButton *left_scroll;
+- (IBAction)left_S:(UIButton *)sender;
+- (IBAction)right_S:(UIButton *)sender;
 @end
