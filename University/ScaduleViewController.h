@@ -25,6 +25,9 @@
     __weak IBOutlet UIButton *but6;
     
     
+    __weak IBOutlet UILabel *fukultet_lab;
+    __weak IBOutlet UILabel *kurs_lab;
+    __weak IBOutlet UILabel *group_lab;
     
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollV;

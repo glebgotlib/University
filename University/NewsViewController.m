@@ -19,7 +19,7 @@
 @interface NewsViewController ()
 
 @property (nonatomic, strong) NSMutableArray *items;
-
+@property (strong ,nonatomic) NSMutableDictionary *cachedFeedImages;
 @end
 
 @implementation NewsViewController
@@ -60,7 +60,7 @@
     _viewBG.backgroundColor = UIColorFromRGB(0xfbfbdc);
     _web_view.backgroundColor = UIColorFromRGB(0xfbfbdc);
     [_web_view setBackgroundColor:UIColorFromRGB(0xfbfbdc)];
-    
+    self.cachedFeedImages = [[NSMutableDictionary alloc] init];
     
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *backBtnImage = [UIImage imageNamed:@"ogasaback.png"];
@@ -76,11 +76,12 @@
     json = [[NSDictionary alloc] init];
     jsonResultsArray = [[NSMutableArray alloc] init];
     [self feedLine];
-    self.items = [NSMutableArray array];
-    for (int i = 0; i < 100; i++)
-    {
-        [_items addObject:@(i)];
-    }
+    _items = [[NSMutableArray alloc] init];
+//    self.items = [NSMutableArray array];
+//    for (int i = 0; i < 100; i++)
+//    {
+//        [_items addObject:@(i)];
+//    }
 
     // Do any additional setup after loading the view.
     _carousel_view.scrollSpeed = 1.f;
@@ -171,17 +172,29 @@
     
      _pageControl.numberOfPages = [_items count];
     //create new view if no view is available for recycling
-    if (view == nil)
-    {
+//    if (view == nil)
+//    {
         //don't do anything specific to the index within
         //this `if (view == nil) {...}` statement because the view will be
         //recycled and used with other index values later
+    NSString *identifier = [NSString stringWithFormat:@"Celltd__%ld", (long)index];
+    
+    if (([self.cachedFeedImages objectForKey:identifier] == nil)) {
+        
         view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200.f)];
 //        [[jsonResultsArray objectAtIndex:1] objectForKey:@"picture"]
-        NSURL *url = [NSURL URLWithString:[[jsonResultsArray objectAtIndex:index] objectForKey:@"picture"]];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        
-        ((UIImageView *)view).image = [UIImage imageWithData:data];
+//        NSURL *url = [NSURL URLWithString:[[jsonResultsArray objectAtIndex:index] objectForKey:@"picture"]];
+//        NSData *data = [NSData dataWithContentsOfURL:url];
+//        ((UIImageView *)view).image = [UIImage imageWithData:data];
+//        
+        [self clubLogoThumb:[[jsonResultsArray objectAtIndex:index] objectForKey:@"picture"] andImageView:((UIImageView *)view) index:index];
+        }
+    else
+    {
+        ((UIImageView *)view).image = [self.cachedFeedImages valueForKey:identifier];
+    }
+    
+       //     ((UIImageView *)view).image = [UIImage imageNamed:@"4.png"];
         ((UIImageView *)view).frame = CGRectMake(10, 10, self.view.frame.size.width, 200);
 //        [((UIImageView *)view) setContentMode:UIViewContentModeScaleAspectFill];
 //        view.contentMode = UIViewContentModeCenter;
@@ -193,20 +206,19 @@
         label.font = [label.font fontWithSize:18];
         label.tag = 1;
         [view addSubview:label];
-    }
-    else
-    {
-//        view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200.f)];
-        //        [[jsonResultsArray objectAtIndex:1] objectForKey:@"picture"]
-        NSURL *url = [NSURL URLWithString:[[jsonResultsArray objectAtIndex:index] objectForKey:@"picture"]];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        
-        ((UIImageView *)view).image = [UIImage imageWithData:data];
-        ((UIImageView *)view).frame = CGRectMake(10, 10, self.view.frame.size.width, 200);
-        //get a reference to the label in the recycled view
-        label.numberOfLines = 1;
-        label = (UILabel *)[view viewWithTag:1];
-    }
+//    }
+//    else
+//    {
+//
+//        NSURL *url = [NSURL URLWithString:[[jsonResultsArray objectAtIndex:index] objectForKey:@"picture"]];
+//        NSData *data = [NSData dataWithContentsOfURL:url];
+//        
+//        ((UIImageView *)view).image = [UIImage imageWithData:data];
+//        ((UIImageView *)view).frame = CGRectMake(10, 10, self.view.frame.size.width, 200);
+//        //get a reference to the label in the recycled view
+//        label.numberOfLines = 1;
+//        label = (UILabel *)[view viewWithTag:1];
+//    }
     
     //set item label
     //remember to always set any properties of your carousel item
@@ -245,8 +257,10 @@
 }
 
 - (void)carouselDidEndScrollingAnimation:(iCarousel *)carousel{
-    NSLog(@"%ld",(long)_carousel_view.currentItemIndex);
-    [_web_view loadHTMLString:[[_items objectAtIndex:_carousel_view.currentItemIndex] objectForKey:@"fulltext"] baseURL:nil];
+//    NSLog(@"%ld",(long)_carousel_view.currentItemIndex);
+    if (_items.count != 0) {
+        [_web_view loadHTMLString:[[_items objectAtIndex:_carousel_view.currentItemIndex] objectForKey:@"fulltext"] baseURL:nil];
+    }
 }
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
@@ -322,6 +336,50 @@
 }
 
 
+-(void)clubLogoThumb:(NSString*)avatarLink andImageView:(UIImageView*)imgName index:(long)ind
+{
+    NSURLRequest* avatarRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:avatarLink] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval: 10];
+    NSCachedURLResponse* cachedImageResponse = [[NSURLCache sharedURLCache] cachedResponseForRequest:avatarRequest];
+//    imgName.backgroundColor = [UIColor lightGrayColor];
+    if (cachedImageResponse) {
+        imgName.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageWithData:[NSMutableData dataWithData:[cachedImageResponse data]]]];
+    } else {
+        
+        NSString *identifier = [NSString stringWithFormat:@"Celltd__%ld", ind];
+        
+        if (([self.cachedFeedImages objectForKey:identifier] != nil)) {
+            imgName.hidden = NO;
+            imgName.alpha = 1;
+            imgName.image = [self.cachedFeedImages valueForKey:identifier];
+        } else {
+
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
+            NSURLSession *imgLoadSession = [NSURLSession sharedSession];
+            NSURLSessionDownloadTask *getImageTask = [imgLoadSession downloadTaskWithURL:[NSURL URLWithString:avatarLink] completionHandler:^(NSURL *location,NSURLResponse *response, NSError *error){
+                
+                UIImage *downloadedImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:location]];
+
+                dispatch_async(dispatch_get_main_queue(),^{
+                    
+                    [self.cachedFeedImages setValue:downloadedImage forKey:identifier];
+                    
+                    if ([[NSString stringWithFormat:@"Celltd__%ld", ind]isEqualToString:identifier]){
+                        imgName.image = [self.cachedFeedImages valueForKey:identifier] ;
+                        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                    }
+                });
+            }];
+//            [imgName setContentMode:UIViewContentModeScaleAspectFit];
+            
+            [getImageTask resume];
+        }
+        
+    }
+}
+
+
+
 
 
 
@@ -343,3 +401,6 @@
     [_carousel_view scrollToItemAtIndex:_carousel_view.currentItemIndex+1 animated:YES];
 }
 @end
+
+
+

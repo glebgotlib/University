@@ -96,11 +96,12 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldRotate"
                                                         object:@"NO"];
     self.navigationController.navigationBar.hidden = true;
-     _lab1.text = @"Расписание";
-     _lab2.text = @"Новости";
-     _lab3.text = @"Карта академии";
-     _lab4.text = @"Сообщения";
-     _lab5.text = @"Настройки";
+
+     _lab1.text = NSLocalizedString(@"scadule", nil);
+     _lab2.text = NSLocalizedString(@"news", nil);
+     _lab3.text = NSLocalizedString(@"map", nil);
+     _lab4.text = NSLocalizedString(@"mess", nil);
+     _lab5.text = NSLocalizedString(@"settings", nil);
     
     _borderHor1.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"point.png"]];
     _borderHor2.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"point.png"]];

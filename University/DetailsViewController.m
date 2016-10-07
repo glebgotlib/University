@@ -58,7 +58,7 @@
     _mTable.backgroundColor = UIColorFromRGB(0xfbfbdc);
     [self feedLine];
     _lab.backgroundColor = UIColorFromRGB(0xc4c4a0);
-    _lab.text = [NSString stringWithFormat:@"Расписание группы %@",[[NSUserDefaults standardUserDefaults] stringForKey:@"preferenceNameGroup"]];
+    _lab.text = [NSString stringWithFormat:@"%@ %@",NSLocalizedString(@"scadule_det", nil),[[NSUserDefaults standardUserDefaults] stringForKey:@"preferenceNameGroup"]];
     
     _but1.selected = NO;
     _but2.selected = NO;

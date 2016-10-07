@@ -15,6 +15,9 @@
 		8C1FC3DA1D5DFD6400F5EFE3 /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C1FC3D91D5DFD6400F5EFE3 /* down.png */; };
 		8C29DD511D5382FC004EB057 /* ogasaback.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C29DD501D5382FC004EB057 /* ogasaback.png */; };
 		8C2BBF1A1D54CEDE00543ABB /* horline.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C2BBF191D54CEDE00543ABB /* horline.png */; };
+		8C89209B1D905A12001528FA /* ogasa_main_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C89209A1D905A12001528FA /* ogasa_main_logo.jpg */; };
+		8C89209D1D905A4A001528FA /* ogasa-logo-m.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C89209C1D905A4A001528FA /* ogasa-logo-m.png */; };
+		8C9C009B1D86F2950044DC93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8C9C009D1D86F2950044DC93 /* Localizable.strings */; };
 		8CF7D98C1D377E2E00641E41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF7D98B1D377E2E00641E41 /* main.m */; };
 		8CF7D98F1D377E2E00641E41 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF7D98E1D377E2E00641E41 /* AppDelegate.m */; };
 		8CF7D9921D377E2E00641E41 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF7D9911D377E2E00641E41 /* ViewController.m */; };
@@ -82,6 +85,15 @@
 		8C1FC3D91D5DFD6400F5EFE3 /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
 		8C29DD501D5382FC004EB057 /* ogasaback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ogasaback.png; sourceTree = "<group>"; };
 		8C2BBF191D54CEDE00543ABB /* horline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horline.png; sourceTree = "<group>"; };
+		8C89209A1D905A12001528FA /* ogasa_main_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ogasa_main_logo.jpg; sourceTree = "<group>"; };
+		8C89209C1D905A4A001528FA /* ogasa-logo-m.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ogasa-logo-m.png"; sourceTree = "<group>"; };
+		8C9C00971D86F26C0044DC93 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		8C9C00981D86F26C0044DC93 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		8C9C00991D86F2880044DC93 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Main.strings; sourceTree = "<group>"; };
+		8C9C009A1D86F2880044DC93 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		8C9C009C1D86F2950044DC93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8C9C009E1D86F29A0044DC93 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8C9C009F1D86F29C0044DC93 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8CF7D9871D377E2E00641E41 /* University.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = University.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CF7D98B1D377E2E00641E41 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8CF7D98D1D377E2E00641E41 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -171,6 +183,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C9C00A01D87EFAB0044DC93 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				8CF7DA021D3D17F300641E41 /* ScaduleViewController.h */,
+				8CF7DA031D3D17F300641E41 /* ScaduleViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		8CF7D97E1D377E2E00641E41 = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +218,7 @@
 		8CF7D9891D377E2E00641E41 /* University */ = {
 			isa = PBXGroup;
 			children = (
+				8C9C00A01D87EFAB0044DC93 /* Settings */,
 				8CF7DA2D1D461B0F00641E41 /* Message */,
 				8CF7DA011D3D17BD00641E41 /* Schadule */,
 				8CF7D9EE1D38D4E400641E41 /* News */,
@@ -218,6 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				8CF7D98B1D377E2E00641E41 /* main.m */,
+				8C9C009D1D86F2950044DC93 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -225,6 +248,8 @@
 		8CF7D9A41D37A24000641E41 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				8C89209C1D905A4A001528FA /* ogasa-logo-m.png */,
+				8C89209A1D905A12001528FA /* ogasa_main_logo.jpg */,
 				8C1FC3D71D5DFCB800F5EFE3 /* 1471023993_down.png */,
 				8C1FC3D91D5DFD6400F5EFE3 /* down.png */,
 				8C1FC3D51D5DCF3400F5EFE3 /* circle1.png */,
@@ -338,8 +363,6 @@
 		8CF7DA011D3D17BD00641E41 /* Schadule */ = {
 			isa = PBXGroup;
 			children = (
-				8CF7DA021D3D17F300641E41 /* ScaduleViewController.h */,
-				8CF7DA031D3D17F300641E41 /* ScaduleViewController.m */,
 				8CF7DA051D3FBBC600641E41 /* DetailsViewController.h */,
 				8CF7DA061D3FBBC600641E41 /* DetailsViewController.m */,
 				8CF7DA2A1D4211C600641E41 /* DetailsTableViewCell.h */,
@@ -403,6 +426,8 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
+				uk,
 			);
 			mainGroup = 8CF7D97E1D377E2E00641E41;
 			productRefGroup = 8CF7D9881D377E2E00641E41 /* Products */;
@@ -431,6 +456,7 @@
 				8CF7DA431D4A379200641E41 /* ogasa-msg44@2x.png in Resources */,
 				8C1FC3D21D5615A000F5EFE3 /* right.png in Resources */,
 				8CF7D9AF1D37A25000641E41 /* ico4n.png in Resources */,
+				8C89209D1D905A4A001528FA /* ogasa-logo-m.png in Resources */,
 				8CF7DA1B1D410DF800641E41 /* 2g.png in Resources */,
 				8CF7DA421D4A379200641E41 /* ogasa-icon44@2x.png in Resources */,
 				8CF7D9B01D37A25000641E41 /* ico5.png in Resources */,
@@ -452,6 +478,7 @@
 				8CF7DA231D410DF800641E41 /* 6g.png in Resources */,
 				8C1FC3D81D5DFCB800F5EFE3 /* 1471023993_down.png in Resources */,
 				8CFC40361D4B5980009A06EE /* grad.png in Resources */,
+				8C89209B1D905A12001528FA /* ogasa_main_logo.jpg in Resources */,
 				8CF7DA1C1D410DF800641E41 /* 3.png in Resources */,
 				8C1FC3D11D5615A000F5EFE3 /* left.png in Resources */,
 				8C1FC3D41D5DC56D00F5EFE3 /* circle.png in Resources */,
@@ -459,6 +486,7 @@
 				8C29DD511D5382FC004EB057 /* ogasaback.png in Resources */,
 				8CF7D9951D377E2E00641E41 /* Main.storyboard in Resources */,
 				8CF7DA181D410DF800641E41 /* 1.png in Resources */,
+				8C9C009B1D86F2950044DC93 /* Localizable.strings in Resources */,
 				8CF7D9AB1D37A25000641E41 /* ico1.png in Resources */,
 				8C1FC3D61D5DCF3400F5EFE3 /* circle1.png in Resources */,
 				8CF7DA291D42118D00641E41 /* point.png in Resources */,
@@ -495,10 +523,23 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		8C9C009D1D86F2950044DC93 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C9C009C1D86F2950044DC93 /* Base */,
+				8C9C009E1D86F29A0044DC93 /* ru */,
+				8C9C009F1D86F29C0044DC93 /* uk */,
+			);
+			name = Localizable.strings;
+			path = Assets.xcassets;
+			sourceTree = "<group>";
+		};
 		8CF7D9931D377E2E00641E41 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				8CF7D9941D377E2E00641E41 /* Base */,
+				8C9C00971D86F26C0044DC93 /* ru */,
+				8C9C00991D86F2880044DC93 /* uk */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -507,6 +548,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				8CF7D99C1D377E2E00641E41 /* Base */,
+				8C9C00981D86F26C0044DC93 /* ru */,
+				8C9C009A1D86F2880044DC93 /* uk */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

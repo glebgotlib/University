@@ -1,0 +1,111 @@
+
+/* Class = "UIButton"; normalTitle = "4"; ObjectID = "146-Bc-k65"; */
+"146-Bc-k65.normalTitle" = "4";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "2LY-7O-qDV"; */
+"2LY-7O-qDV.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "4Oh-Hg-wv1"; */
+"4Oh-Hg-wv1.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "5lw-L6-LL8"; */
+"5lw-L6-LL8.text" = "1";
+
+/* Class = "UIButton"; normalTitle = "3"; ObjectID = "5qs-Xm-Onf"; */
+"5qs-Xm-Onf.normalTitle" = "3";
+
+/* Class = "UILabel"; text = "Курс"; ObjectID = "6H9-Fl-YJf"; */
+"6H9-Fl-YJf.text" = "Курс";
+
+/* Class = "UIButton"; normalTitle = "2"; ObjectID = "AOv-xM-Pdk"; */
+"AOv-xM-Pdk.normalTitle" = "2";
+
+/* Class = "UIButton"; normalTitle = "6"; ObjectID = "BKy-hw-qBC"; */
+"BKy-hw-qBC.normalTitle" = "6";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Com-7L-19J"; */
+"Com-7L-19J.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "DIe-uC-CnH"; */
+"DIe-uC-CnH.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Готово"; ObjectID = "DaY-a6-TEy"; */
+"DaY-a6-TEy.normalTitle" = "Готово";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "EC2-cY-A6i"; */
+"EC2-cY-A6i.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ECm-Ye-fho"; */
+"ECm-Ye-fho.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "HuI-xC-K7C"; */
+"HuI-xC-K7C.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "I0D-48-ajt"; */
+"I0D-48-ajt.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "5"; ObjectID = "IYL-tM-eAp"; */
+"IYL-tM-eAp.normalTitle" = "5";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "Kat-u1-DRh"; */
+"Kat-u1-DRh.title" = "Back";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "RV3-UY-ewR"; */
+"RV3-UY-ewR.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Группа"; ObjectID = "Shz-bn-uCR"; */
+"Shz-bn-uCR.text" = "Группа";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "TyT-J9-6Vb"; */
+"TyT-J9-6Vb.text" = "1";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "UX9-T0-4r3"; */
+"UX9-T0-4r3.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "UuC-0l-Vfz"; */
+"UuC-0l-Vfz.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Что бы посмотреть расписание нужно указать вашу группу"; ObjectID = "UzK-GA-5tb"; */
+"UzK-GA-5tb.text" = "Что бы посмотреть расписание нужно указать вашу группу";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Vvb-VU-kwd"; */
+"Vvb-VU-kwd.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "X3Y-ph-cES"; */
+"X3Y-ph-cES.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "XYF-tv-Sox"; */
+"XYF-tv-Sox.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "YNO-si-Qvw"; */
+"YNO-si-Qvw.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Z6n-1v-cl1"; */
+"Z6n-1v-cl1.text" = "Label";
+
+/* Class = "UILabel"; text = "Факультет"; ObjectID = "ZCy-kj-Ce1"; */
+"ZCy-kj-Ce1.text" = "Факультет";
+
+/* Class = "UIButton"; normalTitle = "1"; ObjectID = "h4h-NF-6b6"; */
+"h4h-NF-6b6.normalTitle" = "1";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "iYF-vZ-pK2"; */
+"iYF-vZ-pK2.text" = "Label";
+
+/* Class = "UILabel"; text = "Label Label Label Label Label Label Label Label Label Label Label Label"; ObjectID = "in7-Al-Yba"; */
+"in7-Al-Yba.text" = "Label Label Label Label Label Label Label Label Label Label Label Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "ls4-lh-rRb"; */
+"ls4-lh-rRb.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "pzT-6K-eWW"; */
+"pzT-6K-eWW.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "q7u-4L-aXg"; */
+"q7u-4L-aXg.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "qLp-Yt-b4z"; */
+"qLp-Yt-b4z.text" = "Label";
+
+/* Class = "UILabel"; text = "Label Label LabelLabel Label LabelLabel Label LabelLabel Label LabelLabel Label Label"; ObjectID = "rXP-7c-4cv"; */
+"rXP-7c-4cv.text" = "Label Label LabelLabel Label LabelLabel Label LabelLabel Label LabelLabel Label Label";

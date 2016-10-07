@@ -123,6 +123,11 @@
     but4.selected = NO;
     but5.selected = NO;
     but6.selected = NO;
+    
+    fukultet_lab.text = NSLocalizedString(@"fac", nil);
+    kurs_lab.text = NSLocalizedString(@"kurs", nil);
+    group_lab.text = NSLocalizedString(@"group", nil);
+    [_readyButton setTitle:NSLocalizedString(@"done", nil) forState:UIControlStateNormal];
     self.navigationController.navigationBar.hidden = false;
 }
 
