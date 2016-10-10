@@ -30,7 +30,7 @@
     NSURLSessionDataTask *feedTask;
     NSURL *recomendPersonalizedUrl;
     NSDictionary* json;
-
+    int savedCount;
     
 }
 -(BOOL)shouldAutorotate
@@ -60,7 +60,7 @@
     [super viewDidLoad];
     
     _count_lab.hidden = YES;
-    [self feedLine];
+//    [self feedLine];
     self.navigationController.navigationBar.barTintColor = UIColorFromRGB(0xfbfbdc);
     self.view.backgroundColor = UIColorFromRGB(0xfbfbdc);
     [_ioLogo setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"grad.png"]]];
@@ -109,6 +109,20 @@
     
     _borderVer1.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"point2.png"]];
     _borderVer2.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"point2.png"]];
+    
+    savedCount = 0;
+    for (int i  =  0; i   <   100; i++)
+    {
+        NSString*key = [NSString stringWithFormat:@"key_%d",i];
+        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        
+        NSObject * object = [prefs objectForKey:key];
+        if(object != nil){
+            savedCount++;
+        }
+
+    }
+    [self feedLine];
     
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -265,7 +279,7 @@
     int dateStamp = [dateInLocalTimezone timeIntervalSince1970];
     
     
-    feedUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://y.od.ua/messages//app/?idgroup=1&action=count"]];
+    feedUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/messages//app/?idgroup=1&action=count",[[NSUserDefaults standardUserDefaults] stringForKey:@"mainUrl"]]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:feedUrl];
     NSLog(@"headUrl: %@", feedUrl);
     [request addValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
@@ -298,12 +312,17 @@
                                           else{
                                               dispatch_async(dispatch_get_main_queue(),^{
 //                                                  NSLog(@"YES %@",);
-                                                  if ([[NSUserDefaults standardUserDefaults] stringForKey:@"countMess"]==nil || [[[NSUserDefaults standardUserDefaults] stringForKey:@"countMess"] intValue] > [newStr intValue]) {
-                                                      [[NSUserDefaults standardUserDefaults] setObject:newStr forKey:@"countMess"];
+//                                                  if ([[NSUserDefaults standardUserDefaults] stringForKey:@"countMess"]==nil || [[[NSUserDefaults standardUserDefaults] stringForKey:@"countMess"] intValue] > [newStr intValue]) {
+//                                                      [[NSUserDefaults standardUserDefaults] setObject:newStr forKey:@"countMess"];
+                                                      int n = newStr.intValue - savedCount;
+                                                  if (n!=0) {
+                                                      NSString*str = [NSString stringWithFormat:@"%d",n];
                                                       _mess_icon.image = [UIImage imageNamed:@"ico4n.png"];
-                                                      _count_lab.text = newStr;
+                                                      _count_lab.text = str;
                                                       _count_lab.hidden = NO;
+                                                      NSLog(@"++++++++++   %@",str);
                                                   }
+//                                                  }
                                                  
                                                   
                                               });

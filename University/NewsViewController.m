@@ -281,7 +281,7 @@
     int dateStamp = [dateInLocalTimezone timeIntervalSince1970];
     
     
-    feedUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://y.od.ua/allnews//json/"]];
+    feedUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/allnews//json/",[[NSUserDefaults standardUserDefaults] stringForKey:@"mainUrl"]]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:feedUrl];
     NSLog(@"headUrl: %@", feedUrl);
     [request addValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];

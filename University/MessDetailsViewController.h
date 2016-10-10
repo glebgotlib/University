@@ -15,5 +15,5 @@
 @property (weak, nonatomic) NSString *linkStr;
 @property (weak, nonatomic) NSString *forStudents;
 @property (weak, nonatomic) NSString *date_of;
-
+@property (weak, nonatomic) NSString *myIdf;
 @end

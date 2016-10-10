@@ -81,6 +81,7 @@
 {
     [super viewWillAppear:YES];
     self.navigationController.navigationBar.hidden = false;
+    [self.mTable reloadData];
 }
 
 - (IBAction)b1:(UIButton *)sender {
@@ -124,8 +125,16 @@
     if (cell == nil) {
         cell = [[MessageTableViewCell alloc]  initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.backgroundColor = UIColorFromRGB(0xfbfbdc);
-
+    NSString*key = [NSString stringWithFormat:@"key_%@",[[jsonResultsArray objectAtIndex:indexPath.row] objectForKey:@"id"]];
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    
+    NSObject * object = [prefs objectForKey:key];
+    if(object == nil){
+         cell.backgroundColor = UIColorFromRGB(0xcccccc);
+    }
+    else{
+        cell.backgroundColor = UIColorFromRGB(0xfbfbdc);
+    }
     
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
@@ -142,8 +151,9 @@
     UIStoryboard *storyBoard = [self storyboard];
     MessDetailsViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"MessDetailsViewController"];
     controller.linkStr = [[jsonResultsArray objectAtIndex:indexPath.row] objectForKey:@"text"];
-   controller.forStudents = [[jsonResultsArray objectAtIndex:indexPath.row] objectForKey:@"level"];
+    controller.forStudents = [[jsonResultsArray objectAtIndex:indexPath.row] objectForKey:@"level"];
     controller.date_of = [[jsonResultsArray objectAtIndex:indexPath.row] objectForKey:@"date"];
+    controller.myIdf =  [[jsonResultsArray objectAtIndex:indexPath.row] objectForKey:@"id"];
     [self.navigationController pushViewController:controller animated:YES];
 
 }
@@ -160,7 +170,7 @@
     int dateStamp = [dateInLocalTimezone timeIntervalSince1970];
     
     
-    feedUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://y.od.ua/messages//app/?idgroup=%@&action=messages",[[NSUserDefaults standardUserDefaults] stringForKey:@"preferenceIDGroup"]]];
+    feedUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/messages//app/?idgroup=%@&action=messages",[[NSUserDefaults standardUserDefaults] stringForKey:@"mainUrl"],[[NSUserDefaults standardUserDefaults] stringForKey:@"preferenceIDGroup"]]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:feedUrl];
     NSLog(@"headUrl: %@", feedUrl);
     [request addValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];

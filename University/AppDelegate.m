@@ -16,6 +16,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+//    ogasa.od.ua
+         [[NSUserDefaults standardUserDefaults] setObject:@"http://ogasa.od.ua" forKey:@"mainUrl"];
     return YES;
 }
 

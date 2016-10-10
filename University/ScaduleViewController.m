@@ -239,7 +239,7 @@
     int dateStamp = [dateInLocalTimezone timeIntervalSince1970];
     
     
-    feedUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://y.od.ua/root//groups/"]];
+    feedUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/root//groups/",[[NSUserDefaults standardUserDefaults] stringForKey:@"mainUrl"]]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:feedUrl];
     NSLog(@"headUrl: %@", feedUrl);
     [request addValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];

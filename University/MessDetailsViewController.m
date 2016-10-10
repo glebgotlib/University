@@ -50,7 +50,8 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     // Do any additional setup after loading the view.
 
-    
+    NSString*key = [NSString stringWithFormat:@"key_%@",_myIdf];
+     [[NSUserDefaults standardUserDefaults] setObject:_myIdf forKey:key];
     
     
     UIButton*but1 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
