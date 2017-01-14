@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ScaduleViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource>
+@interface ScaduleViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource,UITextViewDelegate>
 {
     __weak IBOutlet UILabel *title_label;
 
@@ -24,6 +24,9 @@
     __weak IBOutlet UIButton *but5;
     __weak IBOutlet UIButton *but6;
     
+    __weak IBOutlet UITextField *FIO;
+    __weak IBOutlet UITextField *PASS;
+    __weak IBOutlet UITextField *PHONE;
     
     __weak IBOutlet UILabel *fukultet_lab;
     __weak IBOutlet UILabel *kurs_lab;

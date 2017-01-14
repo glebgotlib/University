@@ -38,7 +38,7 @@
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
     [dateFormatter setDateFormat:@"dd MMMM yyyy"];
-//    NSString*str = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970] * 1000];
+    //    NSString*str = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970] * 1000];
     _forStud.text = _forStudents;
     _time.text = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:(NSTimeInterval)[_date_of intValue]]];
     self.view.backgroundColor = UIColorFromRGB(0xfbfbdc);
@@ -47,11 +47,11 @@
     [_web_view setBackgroundColor:UIColorFromRGB(0xfbfbdc)];
     [_web_view setOpaque:NO];
     [_web_view loadHTMLString:_linkStr baseURL:nil];
-        self.automaticallyAdjustsScrollViewInsets = NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     // Do any additional setup after loading the view.
-
-    NSString*key = [NSString stringWithFormat:@"key_%@",_myIdf];
-     [[NSUserDefaults standardUserDefaults] setObject:_myIdf forKey:key];
+    
+    NSString*key = [NSString stringWithFormat:@"key_%@_%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"preferenceIDGroup"],_myIdf];
+    [[NSUserDefaults standardUserDefaults] setObject:_myIdf forKey:key];
     
     
     UIButton*but1 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
@@ -112,13 +112,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

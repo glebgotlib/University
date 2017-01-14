@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "MenuCollectionViewCell.h"
 #import "MapViewController.h"
-#import "T2ViewController.h"  
+#import "T2ViewController.h"
 #import "NewsViewController.h"
 #import "ScaduleViewController.h"
 #import "DetailsViewController.h"
@@ -60,7 +60,7 @@
     [super viewDidLoad];
     
     _count_lab.hidden = YES;
-//    [self feedLine];
+    //    [self feedLine];
     self.navigationController.navigationBar.barTintColor = UIColorFromRGB(0xfbfbdc);
     self.view.backgroundColor = UIColorFromRGB(0xfbfbdc);
     [_ioLogo setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"grad.png"]]];
@@ -96,12 +96,12 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldRotate"
                                                         object:@"NO"];
     self.navigationController.navigationBar.hidden = true;
-
-     _lab1.text = NSLocalizedString(@"scadule", nil);
-     _lab2.text = NSLocalizedString(@"news", nil);
-     _lab3.text = NSLocalizedString(@"map", nil);
-     _lab4.text = NSLocalizedString(@"mess", nil);
-     _lab5.text = NSLocalizedString(@"settings", nil);
+    
+    _lab1.text = NSLocalizedString(@"scadule", nil);
+    _lab2.text = NSLocalizedString(@"news", nil);
+    _lab3.text = NSLocalizedString(@"map", nil);
+    _lab4.text = NSLocalizedString(@"mess", nil);
+    _lab5.text = NSLocalizedString(@"settings", nil);
     
     _borderHor1.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"point.png"]];
     _borderHor2.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"point.png"]];
@@ -111,16 +111,19 @@
     _borderVer2.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"point2.png"]];
     
     savedCount = 0;
-    for (int i  =  0; i   <   100; i++)
-    {
-        NSString*key = [NSString stringWithFormat:@"key_%d",i];
-        NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-        
-        NSObject * object = [prefs objectForKey:key];
-        if(object != nil){
-            savedCount++;
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"preferenceIDGroup"]!=nil) {
+        for (int i  =  0; i   <   100; i++)
+        {
+            NSString*key = [NSString stringWithFormat:@"key_%@_%d",[[NSUserDefaults standardUserDefaults] stringForKey:@"preferenceIDGroup"],i];
+            NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+            
+            NSObject * object = [prefs objectForKey:key];
+            if(object != nil){
+                savedCount++;
+                NSLog(@"savedCount----- %@",key);
+            }
+            
         }
-
     }
     [self feedLine];
     
@@ -158,7 +161,7 @@
         }
         menuCell.menu_img.image = [UIImage imageNamed:@"ico5.png"];
     }
-
+    
     
     menuCell.backgroundColor = [UIColor clearColor];
     return menuCell;
@@ -189,13 +192,13 @@
         MessageViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"MessageViewController"];
         [self.navigationController pushViewController:controller animated:YES];
     }
-
+    
     if(indexPath.item == 4){
         ScaduleViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"ScaduleViewController"];
         [self.navigationController pushViewController:controller animated:YES];
     }
     
-
+    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
@@ -205,11 +208,11 @@
     // Adjust cell size for orientation
     if(indexPath.item==4)
     {
-            if (self.view.frame.size.width==320) {
-                return CGSizeMake(self.collection_view.frame.size.width, 100.f);
-            }
-            else
-                return CGSizeMake(self.collection_view.frame.size.width, 130.f);
+        if (self.view.frame.size.width==320) {
+            return CGSizeMake(self.collection_view.frame.size.width, 100.f);
+        }
+        else
+            return CGSizeMake(self.collection_view.frame.size.width, 130.f);
     }
     else{
         if (self.view.frame.size.width==320) {
@@ -218,7 +221,7 @@
         else
             return CGSizeMake(self.collection_view.frame.size.width/2-5, 130.f);
     }
-
+    
 }
 
 
@@ -231,7 +234,7 @@
     [self performSegueWithIdentifier:@"goToTest" sender:self];
 }
 - (IBAction)b1:(UIButton *)sender {
-     UIStoryboard *storyBoard = [self storyboard];
+    UIStoryboard *storyBoard = [self storyboard];
     if ([[NSUserDefaults standardUserDefaults] stringForKey:@"preferenceName"]!=nil) {
         DetailsViewController*controller = [storyBoard instantiateViewControllerWithIdentifier:@"DetailsViewController"];
         [self.navigationController pushViewController:controller animated:YES];
@@ -241,29 +244,36 @@
         ScaduleViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"ScaduleViewController"];
         [self.navigationController pushViewController:controller animated:YES];
     }
-
+    
 }
 
 - (IBAction)b2:(UIButton *)sender {
-     UIStoryboard *storyBoard = [self storyboard];
+    UIStoryboard *storyBoard = [self storyboard];
     NewsViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"NewsViewController"];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (IBAction)b3:(UIButton *)sender {
-     UIStoryboard *storyBoard = [self storyboard];
+    UIStoryboard *storyBoard = [self storyboard];
     MapViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"MapViewController"];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (IBAction)b4:(UIButton *)sender {
-     UIStoryboard *storyBoard = [self storyboard];
-    MessageViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"MessageViewController"];
-    [self.navigationController pushViewController:controller animated:YES];
+    UIStoryboard *storyBoard = [self storyboard];
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"preferenceName"]!=nil) {
+        MessageViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"MessageViewController"];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    else
+    {
+        ScaduleViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"ScaduleViewController"];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 - (IBAction)b5:(UIButton *)sender {
-     UIStoryboard *storyBoard = [self storyboard];
+    UIStoryboard *storyBoard = [self storyboard];
     ScaduleViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"ScaduleViewController"];
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -279,7 +289,7 @@
     int dateStamp = [dateInLocalTimezone timeIntervalSince1970];
     
     
-    feedUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/messages//app/?idgroup=1&action=count",[[NSUserDefaults standardUserDefaults] stringForKey:@"mainUrl"]]];
+    feedUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/messages//app/?idgroup=%@&action=count",[[NSUserDefaults standardUserDefaults] stringForKey:@"mainUrl"],[[NSUserDefaults standardUserDefaults] stringForKey:@"preferenceIDGroup"]]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:feedUrl];
     NSLog(@"headUrl: %@", feedUrl);
     [request addValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
@@ -298,23 +308,23 @@
                                           NSError *JSONError = nil;
                                           [jsonResultsArray removeAllObjects];
                                           NSString* newStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                          NSLog(@"%@",newStr);
-//                                          json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
-//                                          jsonResultsArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &JSONError];
+                                          NSLog(@"newStr|||||||||||||    %@",newStr);
+                                          //                                          json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
+                                          //                                          jsonResultsArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &JSONError];
                                           //NSLog(@"feedLine  - - - %@",json);
                                           if (JSONError) {
                                               dispatch_async(dispatch_get_main_queue(),^{
-                                              UIAlertView* errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sorry", nil) message:NSLocalizedString(@"Bad connection", nil)  delegate: self cancelButtonTitle:@"ok" otherButtonTitles:nil];
-                                              [errorAlert show];
-                                              [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                                                  UIAlertView* errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sorry", nil) message:NSLocalizedString(@"Bad connection", nil)  delegate: self cancelButtonTitle:@"ok" otherButtonTitles:nil];
+                                                  [errorAlert show];
+                                                  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                               });
                                           }
                                           else{
                                               dispatch_async(dispatch_get_main_queue(),^{
-//                                                  NSLog(@"YES %@",);
-//                                                  if ([[NSUserDefaults standardUserDefaults] stringForKey:@"countMess"]==nil || [[[NSUserDefaults standardUserDefaults] stringForKey:@"countMess"] intValue] > [newStr intValue]) {
-//                                                      [[NSUserDefaults standardUserDefaults] setObject:newStr forKey:@"countMess"];
-                                                      int n = newStr.intValue - savedCount;
+                                                  //                                                  NSLog(@"YES %@",);
+                                                  //                                                  if ([[NSUserDefaults standardUserDefaults] stringForKey:@"countMess"]==nil || [[[NSUserDefaults standardUserDefaults] stringForKey:@"countMess"] intValue] > [newStr intValue]) {
+                                                  //                                                      [[NSUserDefaults standardUserDefaults] setObject:newStr forKey:@"countMess"];
+                                                  int n = newStr.intValue - savedCount;
                                                   if (n!=0) {
                                                       NSString*str = [NSString stringWithFormat:@"%d",n];
                                                       _mess_icon.image = [UIImage imageNamed:@"ico4n.png"];
@@ -322,8 +332,8 @@
                                                       _count_lab.hidden = NO;
                                                       NSLog(@"++++++++++   %@",str);
                                                   }
-//                                                  }
-                                                 
+                                                  //                                                  }
+                                                  
                                                   
                                               });
                                               
@@ -334,10 +344,10 @@
                                       {
                                           if (error.code !=-999){
                                               dispatch_async(dispatch_get_main_queue(),^{
-                                              UIAlertView* errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sorry", nil) message:NSLocalizedString(@"Bad connection", nil)  delegate: self cancelButtonTitle:@"ok" otherButtonTitles:nil];
-                                              [errorAlert show];
-                                              //                                 [activityIndicator stopAnimating];
-                                              [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                                                  UIAlertView* errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sorry", nil) message:NSLocalizedString(@"Bad connection", nil)  delegate: self cancelButtonTitle:@"ok" otherButtonTitles:nil];
+                                                  [errorAlert show];
+                                                  //                                 [activityIndicator stopAnimating];
+                                                  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                               });
                                           }
                                       }

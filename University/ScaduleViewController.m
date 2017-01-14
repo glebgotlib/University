@@ -15,6 +15,7 @@
 #import "ScaduleViewController.h"
 #import "DetailsViewController.h"
 #import "MessageViewController.h"
+#import "LoginViewController.h"
 #define kPickerOne 0
 #define kPickerTwo 1
 #define kPickerTree 2
@@ -43,6 +44,10 @@
     NSString*id_str;
     NSString*name_str;
     NSString*url_str;
+    int pickerWasSelected;
+    NSString* phone;
+    NSString* fio;
+    NSString* pass;
 }
 @end
 
@@ -65,6 +70,8 @@
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:backBtn] ;
     self.navigationItem.leftBarButtonItem = backButton;
     
+    
+    
     [group_picker setHidden:YES];
     [institute_picker setHidden:YES];
     
@@ -77,8 +84,14 @@
     fak_picker.backgroundColor = [UIColor whiteColor];
     group_picker.backgroundColor = [UIColor whiteColor];
     
+    pickerWasSelected = 0;
     
     [self feedLine];
+    
+    FIO.delegate = self;
+    PASS.delegate = self;
+    PHONE.delegate = self;
+    
     items = [[NSArray alloc] init];
     arr_fak = [[NSMutableArray alloc] init];
     arr_group = [[NSMutableArray alloc] init];
@@ -88,32 +101,73 @@
     selected_group = [[NSString alloc] init];
     arr_urls = [[NSMutableArray alloc] init];
     
-    UIButton*button1 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
-    [button1 addTarget:self action:@selector(b1:) forControlEvents:UIControlEventTouchUpInside];
-    [button1 setBackgroundImage:[UIImage imageNamed:@"ogasa-icon44.png"] forState:UIControlStateNormal];
-    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:button1];
+    UIButton*butt1 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
+    [butt1 addTarget:self action:@selector(b1:) forControlEvents:UIControlEventTouchUpInside];
+    [butt1 setBackgroundImage:[UIImage imageNamed:@"ogasa-icon44.png"] forState:UIControlStateNormal];
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:butt1];
     
     UIButton*butz = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 10, 22)];
     UIBarButtonItem *anotherButtonz = [[UIBarButtonItem alloc] initWithCustomView:butz];
     
     
-    UIButton*button2 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
-    [button2 addTarget:self action:@selector(b4:) forControlEvents:UIControlEventTouchUpInside];
-    [button2 setBackgroundImage:[UIImage imageNamed:@"ogasa-msg44.png"] forState:UIControlStateNormal];
-    UIBarButtonItem *anotherButton1 = [[UIBarButtonItem alloc] initWithCustomView:button2];
+    UIButton*butt2 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
+    [butt2 addTarget:self action:@selector(b4:) forControlEvents:UIControlEventTouchUpInside];
+    [butt2 setBackgroundImage:[UIImage imageNamed:@"ogasa-msg44.png"] forState:UIControlStateNormal];
+    UIBarButtonItem *anotherButton1 = [[UIBarButtonItem alloc] initWithCustomView:butt2];
     
-    UIButton*button3 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
-    [button3 addTarget:self action:@selector(b2:) forControlEvents:UIControlEventTouchUpInside];
-    [button3 setBackgroundImage:[UIImage imageNamed:@"ogasa-star44.png"] forState:UIControlStateNormal];
-    UIBarButtonItem *anotherButton2 = [[UIBarButtonItem alloc] initWithCustomView:button3];
+    UIButton*butt3 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
+    [butt3 addTarget:self action:@selector(b2:) forControlEvents:UIControlEventTouchUpInside];
+    [butt3 setBackgroundImage:[UIImage imageNamed:@"ogasa-star44.png"] forState:UIControlStateNormal];
+    UIBarButtonItem *anotherButton2 = [[UIBarButtonItem alloc] initWithCustomView:butt3];
     
-    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:anotherButton,anotherButtonz,anotherButton1,anotherButtonz,anotherButton2, nil]] ;
+    UIButton*login = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 22)];
+    [login addTarget:self action:@selector(loginto:) forControlEvents:UIControlEventTouchUpInside];
+    [login setTitle:@"Login" forState:UIControlStateNormal];
+    [login setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//    [login setBackgroundImage:[UIImage imageNamed:@"ogasa-sta÷r44.png"] forState:UIControlStateNormal];
+    UIBarButtonItem *loginbut = [[UIBarButtonItem alloc] initWithCustomView:login];
+    
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:anotherButton,anotherButtonz,anotherButton1,anotherButtonz,anotherButton2,loginbut, nil]] ;
 //    items =[[NSArray alloc] initWithObjects:@"Green",@"Red",@"White",@"Pink", nil];
     // Do any additional setup after loading the view.
     
     
 }
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    
+    [FIO resignFirstResponder];
+    [PASS resignFirstResponder];
+    [PHONE resignFirstResponder];
+    return YES;
+}
+- (IBAction)b2:(UIButton *)sender {
+    UIStoryboard *storyBoard = [self storyboard];
+    NewsViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"NewsViewController"];
+    [self.navigationController pushViewController:controller animated:YES];
+}
 
+- (IBAction)b3:(UIButton *)sender {
+    UIStoryboard *storyBoard = [self storyboard];
+    MapViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"MapViewController"];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (IBAction)b4:(UIButton *)sender {
+    UIStoryboard *storyBoard = [self storyboard];
+    MessageViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"MessageViewController"];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (IBAction)b5:(UIButton *)sender {
+    UIStoryboard *storyBoard = [self storyboard];
+    ScaduleViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"ScaduleViewController"];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+- (IBAction)loginto:(UIButton *)sender {
+    UIStoryboard *storyBoard = [self storyboard];
+    LoginViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    [self.navigationController pushViewController:controller animated:YES];
+}
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
@@ -160,6 +214,7 @@
 }
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     if (pickerView == institute_picker) {
+        pickerWasSelected = 0;
         [arr_fak removeAllObjects];
         selected_fak = [[jsonResultsArray objectAtIndex:row] objectForKey:@"fakulty"];
         if (![selected_fak isEqualToString:@""]) {
@@ -215,6 +270,7 @@
         [group_picker reloadAllComponents];
     }
     if (pickerView == group_picker) {
+        pickerWasSelected = 0;
         url_str = [[NSString alloc] init];
         name_str = [[NSString alloc] init];
         name_str = [arr_group objectAtIndex:row];
@@ -228,6 +284,90 @@
 
 #pragma mark -
 #pragma mark Request
+
+-(void)registration
+{
+    //    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    NSURL* myurl = [[NSURL alloc] init];
+    NSString*str = [NSString stringWithFormat:@"%@/json/?object=Group&action=register&groupId=%@&fio=%@&phone=%@&password=%@&token=%@&tokentype=0",[[NSUserDefaults standardUserDefaults] stringForKey:@"mainUrl"],id_str,fio,phone,pass,[[NSUserDefaults standardUserDefaults] objectForKey:@"pName"]];
+    NSLog(@"str: %@", str);
+    NSString* webStringURL = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    
+    myurl = [NSURL URLWithString:webStringURL];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:myurl];
+    NSLog(@"headUrl1111111: %@", myurl);
+    [request addValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
+    //    [request setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"X-Csrf-Token"] forHTTPHeaderField:@"X-CSRF-Token" ];
+    //    [request setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"Set-Cookie"] forHTTPHeaderField:@"Set-Cookie"];
+    
+    request.HTTPMethod = @"GET";
+    // Create a download task.
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      if (!error) {
+                                          
+                                          NSLog(@"feedRequest - %@",response);
+                                          NSError *JSONError = nil;
+                                          //                                          [jsonResultsArray removeAllObjects];
+                                          //                                          json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
+                                          //                                          jsonResultsArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &JSONError];
+                                          NSMutableDictionary* dict = [[NSMutableDictionary alloc] init];
+                                          dict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&JSONError];
+                                          NSMutableArray* arr = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &JSONError];
+                                          NSLog(@"arr  - - - %@",data);
+                                          
+                                          NSLog(@"feedLine  - - - %@",dict);
+                                          
+                                          if (JSONError) {
+                                              UIAlertView* errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sorry", nil) message:NSLocalizedString(@"Bad connection!!!", nil)  delegate: self cancelButtonTitle:@"ok" otherButtonTitles:nil];
+                                              [errorAlert show];
+                                              [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                                          }
+                                          else{
+                                              dispatch_async(dispatch_get_main_queue(),^{
+                                                  UIStoryboard *storyBoard = [self storyboard];
+                                                  DetailsViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"DetailsViewController"];
+//                                                  [self registration];
+                                                  if (url_str ==  nil || pickerWasSelected    ==  0) {
+                                                      url_str = [[NSString alloc] init];
+                                                      name_str = [[NSString alloc] init];
+                                                      name_str = [arr_group objectAtIndex:0];
+                                                      url_str = [arr_urls objectAtIndex:0];
+                                                      id_str = [arr_Id objectAtIndex:0];
+                                                  }
+                                                  
+                                                  controller.isUrlLink = url_str;
+                                                  [[NSUserDefaults standardUserDefaults] setObject:url_str forKey:@"preferenceName"];
+                                                  [[NSUserDefaults standardUserDefaults] setObject:name_str forKey:@"preferenceNameGroup"];
+                                                  [[NSUserDefaults standardUserDefaults] setObject:id_str forKey:@"preferenceIDGroup"];
+                                                 [[NSUserDefaults standardUserDefaults] setObject:[dict objectForKey:@"cookie"] forKey:@"cookie"];
+
+                                                      [[NSUserDefaults standardUserDefaults] setObject:[dict objectForKey:@"courseName"] forKey:@"courseName"];
+                                                      [[NSUserDefaults standardUserDefaults] setObject:[dict objectForKey:@"cookie"] forKey:@"cookie"];
+                                                      [[NSUserDefaults standardUserDefaults] setObject:id_str forKey:@"preferenceIDGroup"];
+                                                   [self.navigationController pushViewController:controller animated:YES];
+                                              });
+                                              
+                                              
+                                          }
+                                      }
+                                      else
+                                      {
+                                          if (error.code !=-999){
+                                              UIAlertView* errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sorry", nil) message:NSLocalizedString(@"Bad connection", nil)  delegate: self cancelButtonTitle:@"ok" otherButtonTitles:nil];
+                                              [errorAlert show];
+                                              [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                                          }
+                                      }
+                                      
+                                  }];
+    // Start the task.
+    [task resume];
+}
+
 -(void)feedLine
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
@@ -326,13 +466,26 @@
 */
 
 - (IBAction)goButton:(UIButton *)sender {
-    UIStoryboard *storyBoard = [self storyboard];
-    DetailsViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"DetailsViewController"];
-    controller.isUrlLink = url_str;
-    [[NSUserDefaults standardUserDefaults] setObject:url_str forKey:@"preferenceName"];
-    [[NSUserDefaults standardUserDefaults] setObject:name_str forKey:@"preferenceNameGroup"];
-    [[NSUserDefaults standardUserDefaults] setObject:id_str forKey:@"preferenceIDGroup"];
-    [self.navigationController pushViewController:controller animated:YES];
+//    UIStoryboard *storyBoard = [self storyboard];
+//    DetailsViewController *controller = [storyBoard instantiateViewControllerWithIdentifier:@"DetailsViewController"];
+    phone = PHONE.text;
+    pass = PASS.text;
+    fio = FIO.text;
+    if (url_str ==  nil || pickerWasSelected    ==  0 || id_str == nil) {
+        url_str = [[NSString alloc] init];
+        name_str = [[NSString alloc] init];
+        name_str = [arr_group objectAtIndex:0];
+        url_str = [arr_urls objectAtIndex:0];
+        id_str = [arr_Id objectAtIndex:0];
+    }
+
+    [self registration];
+//
+//    controller.isUrlLink = url_str;
+//    [[NSUserDefaults standardUserDefaults] setObject:url_str forKey:@"preferenceName"];
+//    [[NSUserDefaults standardUserDefaults] setObject:name_str forKey:@"preferenceNameGroup"];
+//    [[NSUserDefaults standardUserDefaults] setObject:id_str forKey:@"preferenceIDGroup"];
+//    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (IBAction)k1:(UIButton *)sender {

@@ -14,6 +14,7 @@
 		8C1FC3D61D5DCF3400F5EFE3 /* circle1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C1FC3D51D5DCF3400F5EFE3 /* circle1.png */; };
 		8C1FC3D81D5DFCB800F5EFE3 /* 1471023993_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C1FC3D71D5DFCB800F5EFE3 /* 1471023993_down.png */; };
 		8C1FC3DA1D5DFD6400F5EFE3 /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C1FC3D91D5DFD6400F5EFE3 /* down.png */; };
+		8C246C2F1E2ACFF700D1B123 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C246C2E1E2ACFF700D1B123 /* LoginViewController.m */; };
 		8C29DD511D5382FC004EB057 /* ogasaback.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C29DD501D5382FC004EB057 /* ogasaback.png */; };
 		8C2BBF1A1D54CEDE00543ABB /* horline.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C2BBF191D54CEDE00543ABB /* horline.png */; };
 		8C89209B1D905A12001528FA /* ogasa_main_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C89209A1D905A12001528FA /* ogasa_main_logo.jpg */; };
@@ -84,6 +85,9 @@
 		8C1FC3D51D5DCF3400F5EFE3 /* circle1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle1.png; sourceTree = "<group>"; };
 		8C1FC3D71D5DFCB800F5EFE3 /* 1471023993_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1471023993_down.png; sourceTree = "<group>"; };
 		8C1FC3D91D5DFD6400F5EFE3 /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
+		8C1FD8DE1E0B059700E6BFA7 /* University.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = University.entitlements; sourceTree = "<group>"; };
+		8C246C2D1E2ACFF700D1B123 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		8C246C2E1E2ACFF700D1B123 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		8C29DD501D5382FC004EB057 /* ogasaback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ogasaback.png; sourceTree = "<group>"; };
 		8C2BBF191D54CEDE00543ABB /* horline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horline.png; sourceTree = "<group>"; };
 		8C89209A1D905A12001528FA /* ogasa_main_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ogasa_main_logo.jpg; sourceTree = "<group>"; };
@@ -188,6 +192,8 @@
 			children = (
 				8CF7DA021D3D17F300641E41 /* ScaduleViewController.h */,
 				8CF7DA031D3D17F300641E41 /* ScaduleViewController.m */,
+				8C246C2D1E2ACFF700D1B123 /* LoginViewController.h */,
+				8C246C2E1E2ACFF700D1B123 /* LoginViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -218,6 +224,7 @@
 		8CF7D9891D377E2E00641E41 /* University */ = {
 			isa = PBXGroup;
 			children = (
+				8C1FD8DE1E0B059700E6BFA7 /* University.entitlements */,
 				8C9C00A01D87EFAB0044DC93 /* Settings */,
 				8CF7DA2D1D461B0F00641E41 /* Message */,
 				8CF7DA011D3D17BD00641E41 /* Schadule */,
@@ -415,7 +422,12 @@
 				TargetAttributes = {
 					8CF7D9861D377E2E00641E41 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = A48M2LL8L8;
+						DevelopmentTeam = DNP3673UD8;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -508,6 +520,7 @@
 				8CF7D9921D377E2E00641E41 /* ViewController.m in Sources */,
 				8CF7DA071D3FBBC600641E41 /* DetailsViewController.m in Sources */,
 				8CF7DA2C1D4211C600641E41 /* DetailsTableViewCell.m in Sources */,
+				8C246C2F1E2ACFF700D1B123 /* LoginViewController.m in Sources */,
 				8CF7D9C31D38058500641E41 /* T2ViewController.m in Sources */,
 				8CF7DA301D461B3C00641E41 /* MessageViewController.m in Sources */,
 				8CF7D9C01D38057800641E41 /* T1ViewController.m in Sources */,
@@ -643,12 +656,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = University/University.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = DNP3673UD8;
 				INFOPLIST_FILE = University/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ogasa;
+				PRODUCT_BUNDLE_IDENTIFIER = com.domainname.odaba;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -658,12 +673,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = University/University.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = DNP3673UD8;
 				INFOPLIST_FILE = University/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ogasa;
+				PRODUCT_BUNDLE_IDENTIFIER = com.domainname.odaba;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

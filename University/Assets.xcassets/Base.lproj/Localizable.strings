@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  University
+
+  Created by Gotlib on 12.09.16.
+  Copyright © 2016 Yog.group. All rights reserved.
+*/
+scadule = "Schedule";
+news = "News";
+mess = "Messages";
+settings = "Settings";
+map = "Academy map";
+scadule_det = "Schedule of";
+fac = "Faculty";
+kurs = "Course";
+group = "Group";
+done = "Done";

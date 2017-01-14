@@ -46,23 +46,23 @@
     self.navigationItem.leftBarButtonItem = backButton;
     _mTable.delegate = self;
     _mTable.dataSource = self;
-        self.automaticallyAdjustsScrollViewInsets = NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationController.navigationBar.barTintColor = UIColorFromRGB(0xfbfbdc);
     self.view.backgroundColor = UIColorFromRGB(0xfbfbdc);
     _mTable.backgroundColor = UIColorFromRGB(0xfbfbdc);
     [self feedLine];
     // Do any additional setup after loading the view.
     
-
+    
     
     UIButton*but1 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
     [but1 addTarget:self action:@selector(b1:) forControlEvents:UIControlEventTouchUpInside];
     [but1 setBackgroundImage:[UIImage imageNamed:@"ogasa-icon44.png"] forState:UIControlStateNormal];
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithCustomView:but1];
-
+    
     UIButton*butz = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 10, 22)];
     UIBarButtonItem *anotherButtonz = [[UIBarButtonItem alloc] initWithCustomView:butz];
-
+    
     
     UIButton*but2 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
     [but2 addTarget:self action:@selector(b4:) forControlEvents:UIControlEventTouchUpInside];
@@ -73,7 +73,7 @@
     [but3 addTarget:self action:@selector(b2:) forControlEvents:UIControlEventTouchUpInside];
     [but3 setBackgroundImage:[UIImage imageNamed:@"ogasa-star44.png"] forState:UIControlStateNormal];
     UIBarButtonItem *anotherButton2 = [[UIBarButtonItem alloc] initWithCustomView:but3];
-
+    
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:anotherButton,anotherButtonz,anotherButton1,anotherButtonz,anotherButton2, nil]] ;
 }
 
@@ -125,12 +125,12 @@
     if (cell == nil) {
         cell = [[MessageTableViewCell alloc]  initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    NSString*key = [NSString stringWithFormat:@"key_%@",[[jsonResultsArray objectAtIndex:indexPath.row] objectForKey:@"id"]];
+    NSString*key = [NSString stringWithFormat:@"key_%@_%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"preferenceIDGroup"],[[jsonResultsArray objectAtIndex:indexPath.row] objectForKey:@"id"]];
     NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     
     NSObject * object = [prefs objectForKey:key];
     if(object == nil){
-         cell.backgroundColor = UIColorFromRGB(0xcccccc);
+        cell.backgroundColor = UIColorFromRGB(0xcccccc);
     }
     else{
         cell.backgroundColor = UIColorFromRGB(0xfbfbdc);
@@ -144,7 +144,7 @@
     cell.mess_text.text = [[jsonResultsArray objectAtIndex:indexPath.row] objectForKey:@"caption"];
     cell.mess_forStud.text = [[jsonResultsArray objectAtIndex:indexPath.row] objectForKey:@"level"];
     cell.mess_date.text = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:(NSTimeInterval)[[[jsonResultsArray objectAtIndex:indexPath.row] objectForKey:@"date"] intValue]]];
-
+    
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -155,7 +155,7 @@
     controller.date_of = [[jsonResultsArray objectAtIndex:indexPath.row] objectForKey:@"date"];
     controller.myIdf =  [[jsonResultsArray objectAtIndex:indexPath.row] objectForKey:@"id"];
     [self.navigationController pushViewController:controller animated:YES];
-
+    
 }
 #pragma mark -
 #pragma mark Request
@@ -170,7 +170,7 @@
     int dateStamp = [dateInLocalTimezone timeIntervalSince1970];
     
     
-    feedUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/messages//app/?idgroup=%@&action=messages",[[NSUserDefaults standardUserDefaults] stringForKey:@"mainUrl"],[[NSUserDefaults standardUserDefaults] stringForKey:@"preferenceIDGroup"]]];
+    feedUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@/messages//app/?&action=messages&usercookie=%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"mainUrl"],[[NSUserDefaults standardUserDefaults] stringForKey:@"cookie"]]];;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:feedUrl];
     NSLog(@"headUrl: %@", feedUrl);
     [request addValue:@"multipart/form-data" forHTTPHeaderField:@"Content-Type"];
@@ -193,14 +193,14 @@
                                           //NSLog(@"feedLine  - - - %@",json);
                                           if (JSONError) {
                                               dispatch_async(dispatch_get_main_queue(),^{
-                                              UIAlertView* errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sorry", nil) message:NSLocalizedString(@"Bad connection", nil)  delegate: self cancelButtonTitle:@"ok" otherButtonTitles:nil];
-                                              [errorAlert show];
-                                              [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                                                  UIAlertView* errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sorry", nil) message:NSLocalizedString(@"Bad connection", nil)  delegate: self cancelButtonTitle:@"ok" otherButtonTitles:nil];
+                                                  [errorAlert show];
+                                                  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                               });
                                           }
                                           else{
                                               dispatch_async(dispatch_get_main_queue(),^{
-//                                                  NSLog(@"YES %@",[jsonResultsArray objectAtIndex:1]);
+                                                  //                                                  NSLog(@"YES %@",[jsonResultsArray objectAtIndex:1]);
                                                   [_mTable reloadData];
                                                   
                                               });
@@ -212,10 +212,10 @@
                                       {
                                           if (error.code !=-999){
                                               dispatch_async(dispatch_get_main_queue(),^{
-                                              UIAlertView* errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sorry", nil) message:NSLocalizedString(@"Bad connection", nil)  delegate: self cancelButtonTitle:@"ok" otherButtonTitles:nil];
-                                              [errorAlert show];
-                                              //                                 [activityIndicator stopAnimating];
-                                              [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                                                  UIAlertView* errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Sorry", nil) message:NSLocalizedString(@"Bad connection", nil)  delegate: self cancelButtonTitle:@"ok" otherButtonTitles:nil];
+                                                  [errorAlert show];
+                                                  //                                 [activityIndicator stopAnimating];
+                                                  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                                               });
                                           }
                                       }
@@ -231,13 +231,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
